@@ -1,0 +1,38 @@
+TRAIN:
+    model: resnet50
+    N: 4
+    M: 8
+    sparse_optimizer: 1
+    load_mask: True
+    init_mask: False
+    save_mask: False
+    mask_path: 'path_tomasks/'
+
+  #  gpu: 3
+
+
+    workers: 3
+    batch_size: 512
+    epochs: 120
+
+    lr_mode : cosine
+    base_lr: 0.2
+    warmup_epochs: 5
+    warmup_lr: 0.0
+    targetlr : 0.0
+
+    momentum: 0.9
+    weight_decay: 0.00005
+
+
+    print_freq: 100
+    model_dir: checkpoint/resnet50_4by8
+
+    train_root: /path_to/imagenet/train
+    val_root: /path_to/imagenet/val
+
+
+
+
+TEST:
+    checkpoint_path : data/pretrained_model/
