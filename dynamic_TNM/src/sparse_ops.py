@@ -19,13 +19,13 @@ _pair = _ntuple(2)
 _triple = _ntuple(3)
 _quadruple = _ntuple(4)
 
-def update_mask_approx2(data, mask, BS=8):
+def update_mask_approx2(data, mask, topk=4,BS=8):
     mask.fill_(0)
     Co = data.shape[0]
-    topk=BS//2
+    #topk=BS//2
     _,idx_sort = data.sort(1,descending=True); #block x 64
     for k in range(BS**2):
-        if k<4:
+        if k<topk:
            mask[range(Co),idx_sort[range(Co),k]] = 1
         else:
             ii,jj = idx_sort//BS,idx_sort%BS
