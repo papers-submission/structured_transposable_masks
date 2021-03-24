@@ -29,8 +29,8 @@ def update_mask_approx2(data, mask, topk=4,BS=8):
            mask[range(Co),idx_sort[range(Co),k]] = 1
         else:
             ii,jj = idx_sort//BS,idx_sort%BS
-            row_cond= mask.view(-1,BS,BS).sum(1)[range(Co),ii[:,k]]<topk
-            col_cond = mask.view(-1,BS,BS).sum(2)[range(Co),jj[:,k]]<topk
+            row_cond= mask.view(-1,BS,BS).sum(1)[range(Co),jj[:,k]]<topk
+            col_cond = mask.view(-1,BS,BS).sum(2)[range(Co),ii[:,k]]<topk
             if (~row_cond).all() and (~col_cond).all():
                 break
             idx_sort[row_cond.mul(col_cond)][:,k]
